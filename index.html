@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>LoveChat.ai</title>
+  <style>
+    :root {
+      --crimson: #E63946;
+      --blush: #F8BBD0;
+      --lilac: #C4A7E7;
+      --charcoal: #1E1E1E;
+      --ivory: #FFF9F5;
+    }
+
+    /* smooth gradient brand background */
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(230,57,70,0.18) 0%, rgba(248,187,208,0.12) 40%, rgba(196,167,231,0.08) 70%, rgba(0,0,0,0) 100%), var(--charcoal);
+      color: var(--ivory);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Poppins", "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: rgba(30,30,30,0.6);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+      border-radius: 1.5rem;
+      max-width: 480px;
+      width: 100%;
+      padding: 2rem 2rem 2.5rem;
+      text-align: center;
+      backdrop-filter: blur(16px) saturate(140%);
+      -webkit-backdrop-filter: blur(16px) saturate(140%);
+      position: relative;
+      isolation: isolate;
+    }
+
+    /* soft glow ring behind the card for vibe */
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(circle at 50% 0%,
+        rgba(230,57,70,0.4) 0%,
+        rgba(248,187,208,0.15) 40%,
+        rgba(196,167,231,0.07) 70%,
+        rgba(0,0,0,0) 80%);
+      filter: blur(40px);
+      z-index: -1;
+    }
+
+    .logo {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ivory);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo-heart {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 4px;
+      background: radial-gradient(circle at 30% 30%, var(--ivory) 0%, var(--crimson) 40%, var(--blush) 70%, var(--lilac) 100%);
+      box-shadow: 0 0 12px rgba(248,187,208,0.8), 0 0 40px rgba(230,57,70,0.4);
+      transform: rotate(45deg) scale(1);
+      position: relative;
+    }
+
+    .logo-heart::after {
+      /* top-left lobe */
+      content: "";
+      position: absolute;
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--ivory) 0%, var(--crimson) 40%, var(--blush) 70%, var(--lilac) 100%);
+      left: -0.4rem;
+      top: -0.4rem;
+    }
+    .logo-heart::before {
+      /* top-right lobe */
+      content: "";
+      position: absolute;
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--ivory) 0%, var(--crimson) 40%, var(--blush) 70%, var(--lilac) 100%);
+      right: -0.4rem;
+      top: -0.4rem;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 2vw + 1rem, 2.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ivory);
+      margin: 0 0 1rem;
+      letter-spacing: -0.03em;
+      background: radial-gradient(circle at 10% 10%, var(--ivory) 0%, var(--blush) 35%, var(--lilac) 80%);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      line-height: 1.5;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-blurb {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      width: 100%;
+      border: 0;
+      border-radius: 0.75rem;
+      padding: 0.9rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--charcoal);
+      background-image: linear-gradient(
+        100deg,
+        var(--crimson) 0%,
+        var(--blush) 50%,
+        var(--lilac) 100%
+      );
+      box-shadow:
+        0 12px 30px rgba(230,57,70,0.4),
+        0 30px 60px rgba(196,167,231,0.18);
+      text-decoration: none;
+      transition: filter 0.18s ease;
+    }
+
+    .cta-button:hover {
+      filter: brightness(1.07);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-note a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+    }
+
+    .footer-note a:hover {
+      color: rgba(255,255,255,0.8);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">
+      <div class="logo-heart"></div>
+      <span>lovechat.ai</span>
+    </div>
+
+    <h1>The next generation of AI girlfriend</h1>
+
+    <div class="tagline">
+      Get ready to talk, flirt, and feel with <strong>LoveChat.ai</strong>.
+    </div>
+
+    <div class="cta-blurb">
+      We’re building the most advanced emotional companion on earth —
+      always there for you, always in your corner, always yours.
+    </div>
+
+    <a class="cta-button" href="#">
+      Join the waitlist
+    </a>
+
+    <div class="footer-note">
+      © <span id="year"></span> LoveChat.ai · All rights reserved  
+      <br />This experience is for adults only.
+    </div>
+  </main>
+
+  <script>
+    // set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
